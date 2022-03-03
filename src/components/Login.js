@@ -12,7 +12,7 @@ function Login() {
         <h2>Wellcome to Unichat!</h2>
         <div
           className="login-button google"
-          onCLick={() => auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())}>
+          onClick={() => auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())}>
           <GoogleOutlined /> Sign In with Google
         </div>
       </div>
