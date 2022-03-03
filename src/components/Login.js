@@ -1,5 +1,8 @@
 import React from "react";
 import { GoogleOutlined } from "@ant-design/icons";
+import "firebase/app";
+
+import { auth } from "../firebase";
 
 function Login() {
   return (
