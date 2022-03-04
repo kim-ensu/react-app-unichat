@@ -31,6 +31,12 @@ function Chats() {
       })
       .then(() => {
         setLoading(false);
+      })
+      .catch(() => {
+        let formdata = new FormData();
+        formdata.append("email", user.email);
+        formdata.append("username", user.displayName);
+        formdata.append("secret", user.uid);
       });
   }, [user, history]);
 
