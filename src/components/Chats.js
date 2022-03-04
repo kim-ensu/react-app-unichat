@@ -45,9 +45,16 @@ function Chats() {
         formdata.append("username", user.displayName);
         formdata.append("secret", user.uid);
 
-        getFile(user.photoUrl).then((avatar) => {
-          formdata.append("avatar", avatar, avatar.name);
-        });
+        getFile(user.photoUrl)
+          .then((avatar) => {
+            formdata.append("avatar", avatar, avatar.name);
+
+            axios.post("https://api.chatengine.io/users", formdata, {
+              headers: { "private-key": "47bd4e88-1bf5-462d-ad20-dc670441a38b" },
+            });
+          })
+          .then(() => setLoading(false))
+          .catch((error) => console.log(error));
       });
   }, [user, history]);
 
