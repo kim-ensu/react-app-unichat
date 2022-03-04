@@ -16,6 +16,13 @@ function Chats() {
     history.push("/");
   };
 
+  const getFile = async (url) => {
+    const response = await fetch(url);
+    const data = await response.blob();
+
+    return new File([data], "userPhoto.jpg", { type: "image/jpeg" });
+  };
+
   useEffect(() => {
     if (!user) {
       history.push("/");
@@ -37,6 +44,10 @@ function Chats() {
         formdata.append("email", user.email);
         formdata.append("username", user.displayName);
         formdata.append("secret", user.uid);
+
+        getFile(user.photoUrl).then((avatar) => {
+          formdata.append("avatar", avatar, avatar.name);
+        });
       });
   }, [user, history]);
 
