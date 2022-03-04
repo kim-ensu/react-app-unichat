@@ -42,7 +42,7 @@ function Chats() {
       .catch(() => {
         let formdata = new FormData();
         formdata.append("email", user.email);
-        formdata.append("username", user.displayName);
+        formdata.append("username", user.email);
         formdata.append("secret", user.uid);
 
         getFile(user.photoURL)
