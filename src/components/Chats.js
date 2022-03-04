@@ -45,11 +45,11 @@ function Chats() {
         formdata.append("username", user.displayName);
         formdata.append("secret", user.uid);
 
-        getFile(user.photoUrl)
+        getFile(user.photoURL)
           .then((avatar) => {
             formdata.append("avatar", avatar, avatar.name);
 
-            axios.post("https://api.chatengine.io/users", formdata, {
+            axios.post("https://api.chatengine.io/users/", formdata, {
               headers: { "private-key": "47bd4e88-1bf5-462d-ad20-dc670441a38b" },
             });
           })
@@ -57,6 +57,8 @@ function Chats() {
           .catch((error) => console.log(error));
       });
   }, [user, history]);
+
+  if (!user || loading) return "Loading...";
 
   return (
     <div className="chats-page">
@@ -69,9 +71,9 @@ function Chats() {
 
       <ChatEngine
         height="calc(100vh - 66px)"
-        projectId="e92b4cad-c679-4ccd-8b3e-14d249e3296f"
-        userName="."
-        userSecret="."
+        projectID="e92b4cad-c679-4ccd-8b3e-14d249e3296f"
+        userName={user.email}
+        userSecret={user.uid}
       />
     </div>
   );
